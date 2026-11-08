@@ -1,0 +1,62 @@
+enable
+configure terminal
+hostname Router_B
+
+! --- Inter-VLAN Routing & DHCP Relay ---
+interface gig0/0
+ no shutdown
+interface gig0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.110.1 255.255.255.0
+ ip helper-address 192.168.10.10
+interface gig0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.120.1 255.255.255.0
+ ip helper-address 192.168.10.10
+interface gig0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.140.1 255.255.255.0
+ ip helper-address 192.168.10.10
+
+! --- WAN Interface ---
+interface gig0/1
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+
+! --- OSPF Routing ---
+router ospf 1
+ router-id 2.2.2.2
+ network 192.168.110.0 0.0.0.255 area 0
+ network 192.168.120.0 0.0.0.255 area 0
+ network 192.168.140.0 0.0.0.255 area 0
+ network 10.0.0.0 0.0.0.3 area 0
+
+! --- ACL 100: Guest Isolation ---
+access-list 100 deny ip 192.168.140.0 0.0.0.255 192.168.0.0 0.0.255.255
+access-list 100 permit udp 192.168.140.0 0.0.0.255 host 192.168.10.10 eq 53
+access-list 100 permit tcp 192.168.140.0 0.0.0.255 any eq 80
+access-list 100 permit tcp 192.168.140.0 0.0.0.255 any eq 443
+access-list 100 permit ip any any
+interface gig0/0.40
+ ip access-group 100 in
+
+! --- ACL 110: Finance Protection ---
+access-list 110 permit ip 192.168.110.0 0.0.0.255 192.168.120.0 0.0.0.255
+access-list 110 deny ip any 192.168.120.0 0.0.0.255 log
+access-list 110 permit ip any any
+interface gig0/0.20
+ ip access-group 110 in
+
+! --- SSH Configuration (ACL 120) ---
+ip domain-name techglobal.lan
+crypto key generate rsa
+! (Choose 1024)
+username admin privilege 15 secret admin123
+access-list 120 permit tcp 192.168.30.0 0.0.0.255 any eq 22
+access-list 120 deny tcp any any eq 22
+line vty 0 4
+ access-class 120 in
+ login local
+ transport input ssh
+end
+write memory

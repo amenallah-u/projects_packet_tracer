@@ -1,0 +1,18 @@
+enable
+configure terminal
+hostname ISP
+
+! Interface connected to Router_A
+interface gig0/0
+ ip address 200.1.1.1 255.255.255.0
+ no shutdown
+
+! Interface connected to External Web Server (8.8.8.8)
+interface gig0/1
+ ip address 8.8.8.1 255.255.255.0
+ no shutdown
+
+! Return Route to internal network
+ip route 192.168.0.0 255.255.0.0 200.1.1.2
+end
+write memory

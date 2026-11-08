@@ -22,7 +22,7 @@ L'objectif est de relier un Siège Social (Site A) à une Agence Distante (Site 
 | 20 | Finance | 192.168.20.0/24 | 192.168.120.0/24 | 192.168.20.1 | 192.168.120.1 |
 | 30 | IT | 192.168.30.0/24 | - | 192.168.30.1 | - |
 | 40 | Guest | 192.168.40.0/24 | 192.168.140.0/24 | 192.168.40.1 | 192.168.140.1 |
-| **50** | **Data Center 2** | **192.168.50.0/24** | - | **192.168.50.1** | - |
+| 50 | Data Center 2 | 192.168.50.0/24 | - | 192.168.50.1 | - |
 | WAN | Lien Inter-site | 10.0.0.0/30 | 10.0.0.0/30 | 10.0.0.1 | 10.0.0.2 |
 | ISP | Vers Internet | 200.1.1.0/24 | - | 200.1.1.2 | - |
 
@@ -51,6 +51,7 @@ Cette zone contient deux serveurs clients qui reçoivent leurs adresses IP **dyn
 *   `README.md` : Ce fichier de documentation.
 *   `Rapport_Technique.pdf` : Le rapport détaillé du projet.
 *   `Captures/` : Dossier contenant les captures d'écran des tests de validation.
+*   `Configurations/` : Contient les configuration des equipments reseau utilise.
 
 ## 🧪 Tests de Validation
 *   **DHCP (Site B)** : Les PC du Site B obtiennent une IP via le serveur du Site A (`ip helper-address`).
