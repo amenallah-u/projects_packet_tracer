@@ -61,4 +61,4 @@ Cette zone contient deux serveurs clients qui reçoivent leurs adresses IP **dyn
 *   **Services** : Connexion FTP réussie et envoi/réception de mail validés.
 
 ---
-*Projet académique réalisé dans le cadre du module Virtualisation Réseau - Sous la supervision du Professeur Bilel Hamdi.*
+*Projet académique (institut: isikef) réalisé dans le cadre du module Virtualisation Réseau - Sous la supervision du Professeur Bilel Hamdi.*
