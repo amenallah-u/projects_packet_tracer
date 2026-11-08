@@ -34,7 +34,7 @@ Ce zone contient les serveurs d'infrastructure critiques avec des adresses IP st
 *   **Serveur 2 (192.168.10.11)** : FTP, Messagerie (Mail)
 
 **2. Data Center 2 (VLAN 50)**
-Cette zone contient deux serveurs clients (simulés par des PC) qui reçoivent leurs adresses IP **dynamiquement** via le serveur DHCP du Data Center 1.
+Cette zone contient deux serveurs clients qui reçoivent leurs adresses IP **dynamiquement** via le serveur DHCP du Data Center 1.
 
 ## 🚀 Fonctionnalités Implémentées
 1.  **Virtualisation L2** : Segmentation stricte des domaines de diffusion (5 VLANs).
